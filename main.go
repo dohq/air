@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"flag"
 	"fmt"
 	"log"
@@ -12,19 +13,29 @@ import (
 )
 
 var (
-	cfgPath     string
-	debugMode   bool
-	showVersion bool
+	cfgPath       string
+	debugMode     bool
+	showVersion   bool
+	outputExample bool
 )
+
+//go:embed air_example.toml
+var exampleConfigFile string
 
 func init() {
 	flag.StringVar(&cfgPath, "c", "", "config path")
 	flag.BoolVar(&debugMode, "d", false, "debug mode")
 	flag.BoolVar(&showVersion, "v", false, "show version")
+	flag.BoolVar(&outputExample, "e", false, "output example config (e.g. air -e > .air.toml)")
 	flag.Parse()
 }
 
 func main() {
+	if outputExample {
+		fmt.Print(exampleConfigFile)
+		return
+	}
+
 	fmt.Printf(`
   __    _   ___  
  / /\  | | | |_) 

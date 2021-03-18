@@ -92,10 +92,10 @@ air -c .air.toml
 While I prefer the second way
 
 ```bash
-# 1. create a new file
-touch .air.toml
+# 1. create a example config
+air -e > .air.toml
 
-# 2. paste `air_example.toml` into this file, and **modify it** to satisfy your needs.
+# 2. **modify it** to satisfy your needs.
 
 # 3. run air with your config. If file name is `.air.toml`, just run `air`.
 air
